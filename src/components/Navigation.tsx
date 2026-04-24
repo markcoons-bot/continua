@@ -5,17 +5,76 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const navLinks = [
-  { href: "/patient", label: "Patient Portal" },
-  { href: "/clinician", label: "Clinician View" },
+const demoLinks = [
+  { href: "/demo",       label: "Patient Portal" },
+  { href: "/clinician",  label: "Clinician View" },
   { href: "/calculator", label: "RTM Calculator" },
-  { href: "/about", label: "About" },
 ];
 
 export default function Navigation() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const isLanding = pathname === "/";
+
+  // ── Landing nav ──────────────────────────────────────────────────────────────
+  if (isLanding) {
+    return (
+      <nav
+        className="sticky top-0 z-50 border-b"
+        style={{
+          backgroundColor: "var(--color-bg)",
+          borderColor: "rgba(28,61,46,0.1)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link href="/">
+              <span
+                className="text-2xl tracking-[0.2em] font-medium"
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                CONTINUA
+              </span>
+            </Link>
+
+            {/* Center — For Clinicians anchor */}
+            <a
+              href="#business-case"
+              className="hidden sm:block text-sm"
+              style={{
+                fontFamily: "var(--font-jost)",
+                color: "var(--color-muted)",
+                letterSpacing: "0.03em",
+              }}
+            >
+              For Clinicians
+            </a>
+
+            {/* CTA */}
+            <Link
+              href="/demo"
+              className="px-5 py-2 rounded-full text-sm font-medium"
+              style={{
+                fontFamily: "var(--font-jost)",
+                backgroundColor: "var(--color-primary)",
+                color: "var(--color-cream)",
+                letterSpacing: "0.03em",
+              }}
+            >
+              Explore the Demo →
+            </Link>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
+  // ── Demo / app nav ───────────────────────────────────────────────────────────
   return (
     <nav
       className="sticky top-0 z-50"
@@ -23,31 +82,45 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/patient" className="flex items-center gap-3">
-            <span
-              className="text-2xl tracking-[0.2em] font-medium"
-              style={{
-                fontFamily: "var(--font-cormorant)",
-                color: "var(--color-cream)",
-              }}
-            >
-              CONTINUA
-            </span>
-            <span
-              className="hidden sm:block text-xs tracking-wider opacity-60"
+          {/* Logo + back link */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="hidden sm:block text-sm flex-shrink-0"
               style={{
                 fontFamily: "var(--font-jost)",
-                color: "var(--color-sage)",
+                color: "rgba(168,196,181,0.55)",
+                letterSpacing: "0.02em",
+                whiteSpace: "nowrap",
               }}
             >
-              Demo Mode
-            </span>
-          </Link>
+              ← Overview
+            </Link>
+            <Link href="/demo" className="flex items-center gap-3">
+              <span
+                className="text-2xl tracking-[0.2em] font-medium"
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  color: "var(--color-cream)",
+                }}
+              >
+                CONTINUA
+              </span>
+              <span
+                className="hidden sm:block text-xs tracking-wider opacity-60"
+                style={{
+                  fontFamily: "var(--font-jost)",
+                  color: "var(--color-sage)",
+                }}
+              >
+                Demo Mode
+              </span>
+            </Link>
+          </div>
 
-          {/* Desktop nav */}
+          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
+            {demoLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
                 pathname.startsWith(link.href + "/");
@@ -95,7 +168,9 @@ export default function Navigation() {
               className="block w-6 h-0.5 transition-transform duration-200"
               style={{
                 backgroundColor: "var(--color-cream)",
-                transform: menuOpen ? "translateY(8px) rotate(45deg)" : "none",
+                transform: menuOpen
+                  ? "translateY(8px) rotate(45deg)"
+                  : "none",
               }}
             />
             <span
@@ -134,7 +209,18 @@ export default function Navigation() {
             }}
           >
             <div className="px-4 py-3 flex flex-col gap-1">
-              {navLinks.map((link) => {
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className="px-3 py-2.5 rounded-md text-sm"
+                style={{
+                  fontFamily: "var(--font-jost)",
+                  color: "rgba(168,196,181,0.55)",
+                }}
+              >
+                ← Back to Overview
+              </Link>
+              {demoLinks.map((link) => {
                 const isActive =
                   pathname === link.href ||
                   pathname.startsWith(link.href + "/");

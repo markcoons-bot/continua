@@ -1,5 +1,5 @@
-import PatientPortal from "@/components/patient/PatientPortal";
+import { redirect } from "next/navigation";
 
 export default function PatientPage() {
-  return <PatientPortal />;
+  redirect("/demo");
 }

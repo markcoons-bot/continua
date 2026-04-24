@@ -1,5 +1,5 @@
-import AboutPage from "@/components/about/AboutPage";
+import { redirect } from "next/navigation";
 
 export default function About() {
-  return <AboutPage />;
+  redirect("/");
 }
