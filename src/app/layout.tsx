@@ -16,9 +16,24 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Continua · Between-Session Therapy Support",
+  metadataBase: new URL("https://continua-ashen.vercel.app"),
+  title: "Continua — Between-Session Therapy Support",
   description:
-    "Continua bridges the 167 hours between therapy sessions — grounding tools, AI-assisted journaling, session memory, and RTM billing support for clinicians and patients.",
+    "A weekly session is 50 minutes. Continua supports the other 167 hours — grounding tools, AI journaling, session memory, and RTM billing for clinicians.",
+  openGraph: {
+    title: "Continua — Between-Session Therapy Support",
+    description:
+      "A weekly session is 50 minutes. Continua supports the other 167 hours — grounding tools, AI journaling, session memory, and RTM billing for clinicians.",
+    url: "https://continua-ashen.vercel.app",
+    siteName: "Continua",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Continua — Between-Session Therapy Support",
+    description:
+      "A weekly session is 50 minutes. Continua supports the other 167 hours — grounding tools, AI journaling, session memory, and RTM billing for clinicians.",
+  },
 };
 
 export default function RootLayout({
