@@ -49,7 +49,7 @@ function ProductMockup() {
         >
           CONTINUA
         </span>
-        <div className="flex gap-4 ml-2">
+        <div className="hidden sm:flex gap-4 ml-2">
           {["Patient Portal", "Clinician View", "RTM Calculator"].map((link, i) => (
             <span
               key={link}
@@ -64,7 +64,7 @@ function ProductMockup() {
             </span>
           ))}
         </div>
-        <div className="ml-auto">
+        <div className="ml-auto hidden sm:flex items-center">
           <span
             style={{
               fontFamily: "var(--font-jost)",
@@ -89,7 +89,7 @@ function ProductMockup() {
           padding: "10px 20px 8px",
         }}
       >
-        <div className="flex gap-1.5 overflow-hidden">
+        <div className="flex gap-1.5" style={{ overflowX: "auto", scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
           {patients.map((p, i) => (
             <div
               key={p.id}
@@ -227,6 +227,7 @@ export default function LandingPage() {
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section
+        className="px-5 sm:px-6 pt-14 pb-16 sm:pt-20 sm:pb-20"
         style={{
           backgroundColor: "var(--color-bg)",
           minHeight: "calc(100svh - 64px)",
@@ -234,7 +235,6 @@ export default function LandingPage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "80px 24px 72px",
           position: "relative",
           textAlign: "center",
         }}
@@ -267,7 +267,7 @@ export default function LandingPage() {
             variants={fadeUp}
             style={{
               fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(52px, 8vw, 92px)",
+              fontSize: "clamp(40px, 8vw, 92px)",
               lineHeight: 1.07,
               color: "var(--color-primary)",
               fontWeight: 400,
@@ -363,7 +363,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── THE PROBLEM ──────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "var(--color-primary)", padding: "96px 24px" }}>
+      <section className="py-16 sm:py-20 lg:py-24 px-5 sm:px-6" style={{ backgroundColor: "var(--color-primary)" }}>
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -482,7 +482,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── HOW IT WORKS ─────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "var(--color-bg)", padding: "96px 24px" }}>
+      <section className="py-16 sm:py-20 lg:py-24 px-5 sm:px-6" style={{ backgroundColor: "var(--color-bg)" }}>
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -514,7 +514,7 @@ export default function LandingPage() {
 
           <motion.div
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-3 gap-10"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10"
           >
             {[
               {
@@ -590,7 +590,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── CLINICAL FOUNDATION ──────────────────────────────────────── */}
-      <section style={{ backgroundColor: "var(--color-surface)", padding: "96px 24px" }}>
+      <section className="py-16 sm:py-20 lg:py-24 px-5 sm:px-6" style={{ backgroundColor: "var(--color-surface)" }}>
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -710,7 +710,8 @@ export default function LandingPage() {
       {/* ── BUSINESS CASE ────────────────────────────────────────────── */}
       <section
         id="business-case"
-        style={{ backgroundColor: "var(--color-primary)", padding: "96px 24px" }}
+        className="py-16 sm:py-20 lg:py-24 px-5 sm:px-6"
+        style={{ backgroundColor: "var(--color-primary)" }}
       >
         <motion.div
           variants={stagger}
@@ -770,7 +771,7 @@ export default function LandingPage() {
                 ].map(({ label, value, big }, i) => (
                   <div
                     key={label}
-                    className="flex items-center justify-between py-4"
+                    className="flex items-baseline justify-between gap-4 py-4"
                     style={{
                       borderBottom: i < 3 ? "1px solid rgba(168,196,181,0.1)" : "none",
                     }}
@@ -780,6 +781,7 @@ export default function LandingPage() {
                         fontFamily: "var(--font-jost)",
                         fontSize: "0.875rem",
                         color: "rgba(168,196,181,0.65)",
+                        flexShrink: 0,
                       }}
                     >
                       {label}
@@ -787,9 +789,10 @@ export default function LandingPage() {
                     <p
                       style={{
                         fontFamily: "var(--font-cormorant)",
-                        fontSize: big ? "1.6rem" : "1.15rem",
+                        fontSize: big ? "1.5rem" : "1.1rem",
                         color: big ? "var(--color-sage)" : "rgba(168,196,181,0.85)",
                         lineHeight: 1,
+                        textAlign: "right",
                       }}
                     >
                       {value}
@@ -901,7 +904,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
-      <footer style={{ backgroundColor: "#0d1f18", padding: "60px 24px 48px" }}>
+      <footer className="py-14 px-5 sm:px-6" style={{ backgroundColor: "#0d1f18" }}>
         <div
           style={{ maxWidth: 1080, margin: "0 auto" }}
           className="flex flex-col items-center gap-6 text-center"
