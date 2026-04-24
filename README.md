@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Continua
 
-## Getting Started
+Between-session therapy support for patients and their clinicians — bridging the 167 hours between appointments with grounding tools, AI-assisted journaling, and RTM billing infrastructure.
 
-First, run the development server:
+## Setup
+
+```bash
+npm install
+```
+
+Add your Anthropic API key to `.env.local`:
+
+```
+ANTHROPIC_API_KEY=your_key_here
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy to Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Link this repository in the Vercel dashboard
+2. Add `ANTHROPIC_API_KEY` as an environment variable under Project Settings → Environment Variables
+3. Deploy — Vercel reads `vercel.json` for the variable reference automatically
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Navigation
 
-## Learn More
+| Route | Description |
+|-------|-------------|
+| `/patient` | Patient portal — grounding tools, journaling, session memory, and modality-specific tools |
+| `/clinician` | Clinician dashboard — patient overview, journal review, RTM logging, and billing export |
+| `/calculator` | RTM revenue calculator — estimate billing impact of adding Remote Therapeutic Monitoring |
+| `/about` | Product overview — clinical foundation, features, and contact |
 
-To learn more about Next.js, take a look at the following resources:
+## Demo patients
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Patient | Modality | Notes |
+|---------|----------|-------|
+| Sarah Chen | EMDR | Phase 3–4, SUDS baseline 7, driving trauma |
+| James Okafor | CBT | Performance anxiety, imposter syndrome |
+| Elena Vasquez | DBT | Emotional dysregulation, BPD features |
+| Michael Torres | Grief | Loss of spouse, dual process model |
+| Aisha Patel | EMDR | Phase 2, resource installation, childhood trauma |
+| Tyler Brooks | CBT (Adolescent) | Social anxiety, perfectionism, age 16 |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 (App Router)
+- Tailwind CSS v4
+- Framer Motion
+- Anthropic SDK (`/api/reflect` route uses `claude-opus-4-6`)
